@@ -146,5 +146,5 @@ test("Dashboard access is protected", async () => {
 })
 
 afterAll(() => {
-    // mongoMemoryServer?.stop?.()
+    mongoMemoryServer?.stop?.()
 })

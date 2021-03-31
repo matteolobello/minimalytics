@@ -55,3 +55,7 @@ Minimalytics.init({
     debug: false
 })
 ```
+
+## Screenshot
+
+![Minimalytics Screenshot](/screenshot/screenshot.png?raw=true)
