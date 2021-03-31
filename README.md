@@ -56,6 +56,6 @@ Minimalytics.init({
 })
 ```
 
-## Screenshot
+## Screenshot
 
 ![Minimalytics Screenshot](/screenshot/screenshot.png?raw=true)
