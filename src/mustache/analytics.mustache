@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Anayltics</title>
+
+        <style>
+            :root {
+                --horizontal-margin: 15vw;
+                --background: #FFFFFF;
+                --text: #000000;
+            }
+            @media screen and (max-width: 768px) {
+                :root {
+                    --horizontal-margin: 16px;
+                }
+            }
+            @media (prefers-color-scheme: dark) {
+                :root {
+                    --background: #121212;
+                    --text: #FFFFFF;
+                }
+            }
+            body {
+                background: var(--background);
+                margin-left: var(--horizontal-margin);
+                margin-right: var(--horizontal-margin);
+            }
+            h1 {
+                margin-top: 48px;
+            }
+            ul {
+                margin: 0;
+                padding: 0;
+                list-style: none;
+            }
+            * {
+                color: var(--text);
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Minimalytics</h1>
+        
+        <h3>Views</h3>
+        <div>Today views: {{todayViews}}</div>
+        <div>This month views: {{thisMonthViews}}</div>
+        <div>Total views {{totalViews}}</div>
+
+        <h3>Total by Countries</h3>
+        <ul>
+            {{#viewsGroupedByCountry}}
+                <li class="country">{{emoji}} {{_id}} - {{totalViews}}</li>
+            {{/viewsGroupedByCountry}}
+        </ul>
+    </body>
+</html>
