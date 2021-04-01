@@ -1,11 +1,11 @@
 {
     "name": "minimalytics",
-    "version": "1.0.0",
+    "version": "1.0.5",
     "description": "A minimal, on-premise alternative to Google Analytics",
     "main": "lib/index.js",
     "types": "lib/index.d.ts",
     "scripts": {
-        "build": "tsc",
+        "build": "tsc && cp -R src/mustache lib/mustache",
         "test": "jest --config jestconfig.json",
         "prepublishOnly": "npm run build"
     },
@@ -33,6 +33,7 @@
         "@types/jsdom": "^16.2.9",
         "@types/mustache": "^4.1.1",
         "@types/node-fetch": "^2.5.8",
+        "@types/request-ip": "^0.0.35",
         "jest": "^26.6.3",
         "jsdom": "^16.5.2",
         "mongodb-memory-server": "^6.9.6",
@@ -46,6 +47,7 @@
         "geoip-lite": "^1.4.2",
         "ip-anonymize": "^0.1.0",
         "mongoose": "^5.12.2",
-        "mustache": "^4.2.0"
+        "mustache": "^4.2.0",
+        "request-ip": "^2.1.3"
     }
 }

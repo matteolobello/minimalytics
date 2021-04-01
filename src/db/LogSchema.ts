@@ -13,7 +13,6 @@ const createLogSchema = (collection: string) => {
         {
             ip: {
                 type: String,
-                unique: true,
                 required: true,
                 lowercase: true,
                 trim: true

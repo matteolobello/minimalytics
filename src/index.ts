@@ -1,11 +1,12 @@
+import * as CountryEmoji from "country-emoji"
 import * as Express from "express"
+import * as fs from "fs"
 import * as GeoIp from "geoip-lite"
 import * as IpAnonymize from "ip-anonymize"
 import * as Mongoose from "mongoose"
-import { createLogModel, ILog } from "./db/LogSchema"
-import * as fs from "fs"
 import * as Mustache from "mustache"
-import * as countryEmoji from "country-emoji"
+import * as RequestIp from "request-ip"
+import { createLogModel, ILog } from "./db/LogSchema"
 
 interface MinimalyticsOpt {
     express: Express.Application
@@ -69,6 +70,10 @@ class Minimalytics {
         // Do not block the request while logging
         next()
 
+        if (req.path.includes("favicon.ico")) {
+            return this.log("Not logging favicon.ico requests")
+        }
+
         if (this.opt.validPaths) {
             let isValidPath = false
             for (const validPath of this.opt.validPaths) {
@@ -90,7 +95,7 @@ class Minimalytics {
             }
         }
 
-        const ip = req.ip.toString?.()?.replace?.("::ffff:", "")
+        const ip = RequestIp.getClientIp(req)
         if (!ip) {
             return this.log(`Could not get the IP of the client`)
         }
@@ -135,7 +140,7 @@ class Minimalytics {
             country
         })
 
-        this.log("Adding request log")
+        this.log("Adding request log...")
     }
 
     private handleBasicAuthRequests() {
@@ -233,7 +238,7 @@ class Minimalytics {
 
         return models.map((item) => ({
             ...item,
-            emoji: countryEmoji.flag(item._id)
+            emoji: CountryEmoji.flag(item._id)
         }))
     }
 
