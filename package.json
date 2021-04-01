@@ -1,6 +1,6 @@
 {
     "name": "minimalytics",
-    "version": "1.0.5",
+    "version": "1.0.6",
     "description": "A minimal, on-premise alternative to Google Analytics",
     "main": "lib/index.js",
     "types": "lib/index.d.ts",
@@ -46,6 +46,7 @@
         "express": "^4.17.1",
         "geoip-lite": "^1.4.2",
         "ip-anonymize": "^0.1.0",
+        "iso-3166-1": "^2.0.1",
         "mongoose": "^5.12.2",
         "mustache": "^4.2.0",
         "request-ip": "^2.1.3"

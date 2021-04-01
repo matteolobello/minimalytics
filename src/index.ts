@@ -3,6 +3,7 @@ import * as Express from "express"
 import * as fs from "fs"
 import * as GeoIp from "geoip-lite"
 import * as IpAnonymize from "ip-anonymize"
+import * as iso3666_1 from "iso-3166-1"
 import * as Mongoose from "mongoose"
 import * as Mustache from "mustache"
 import * as RequestIp from "request-ip"
@@ -127,11 +128,20 @@ class Minimalytics {
 
         let country = GeoIp.lookup(ip)?.country
         if (!country) {
-            if (isLocalHost && !this.opt.debug) {
-                return this.log(`Could not get country for IP "${ip}"`)
-            }
+            if (isLocalHost) {
+                if (!this.opt.debug) {
+                    return this.log(`Could not get country for IP "${ip}"`)
+                }
 
-            country = "United States of America"
+                country = "United States of America"
+            } else {
+                return this.log("Unable to get client IP")
+            }
+        }
+
+        country = iso3666_1.whereAlpha2(country!)?.country
+        if (!country) {
+            return this.log("Couldn't convert ISO-3666-1 to country name")
         }
 
         this.logModel.create({
