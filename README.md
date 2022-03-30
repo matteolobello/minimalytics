@@ -1,6 +1,6 @@
 # Minimalytics
 
-A minimal, on-premise alternative to Google Analytics
+A minimal, on-premise, server-side solution for saving basic info about your users.
 
 ## What the library logs
 
